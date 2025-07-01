@@ -1,4 +1,13 @@
 #cloud-config
+
+# Upgrade on first boot
+package_update: true
+package_upgrade: true
+
+# Add baseline packages
+packages:
+  - git
+
 write_files:
   # Setup the reconciliation data (systemd)
   - path: /etc/systemd/system/reconcile.service
