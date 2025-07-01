@@ -25,3 +25,4 @@
 ## References
 
 - [Traefik Proxy](https://doc.traefik.io/)
+- [MinIO (Object Storge)](https://min.io/)
