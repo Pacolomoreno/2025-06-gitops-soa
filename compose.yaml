@@ -23,10 +23,16 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_CONNECTIONSTRING: "postgresql://myuser:mypassword@localhost:5432/mydatabase"
+    # Traefik supports dynamic configuration through labeling containers (you can do static and embed the same in a config file)
+    # Reference the Traefik docs for options: https://doc.traefik.io/traefik/
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.example-service.rule=PathPrefix(`/api/example`)"
-      - "traefik.http.routers.example-service.entrypoints=web"
+      - "traefik.enable=true" # Enable Traefik for this service
+      - "traefik.http.routers.example-service.entrypoints=web" # For the entrypoint web
+      - "traefik.http.routers.example-service.rule=PathPrefix(`/api/example`)" # Forward /api/example
+      # Strip the prefix, so the service is unaware
+      - "traefik.http.middlewares.example-service.stripprefix.prefixes=/api/example"
+      - "traefik.http.routers.example-service.middlewares=example-service"
+      # Forward to port 8080 on the service container
       - "traefik.http.services.example-service.loadbalancer.server.port=8080"
 
   # External services we usually depends on
