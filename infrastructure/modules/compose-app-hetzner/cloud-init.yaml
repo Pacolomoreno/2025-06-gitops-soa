@@ -1,0 +1,38 @@
+#cloud-config
+write_files:
+  - path: /usr/local/bin/reconcile.sh
+    permissions: '0755'
+    content: |
+${indented_reconciliation_script}
+
+  # Setup the reconciliation data (systemd)
+  - path: /etc/systemd/system/reconcile.service
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Run reconciliation script
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/reconcile.sh
+
+  - path: /etc/systemd/system/reconcile.timer
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=Timer for reconciliation script
+
+      [Timer]
+      OnBootSec=${boot_delay}
+      OnUnitActiveSec=${reconciliation_intervall}
+      Persistent=true
+
+      [Install]
+      WantedBy=timers.target
+
+runcmd:
+  # Setup the reconciliation service
+  - chmod +x /usr/local/bin/reconcile.sh
+  - systemctl daemon-reload
+  - systemctl enable reconcile.timer
+  - systemctl start reconcile.timer
