@@ -18,6 +18,11 @@ resource "hcloud_server" "server" {
   server_type = var.server_type
   datacenter  = var.datacenter
 
+  labels = {
+    app      = "compose-app"
+    interval = var.reconciliation_interval
+  }
+
   image = "debian-12"
 
   user_data = local.cloud_init
