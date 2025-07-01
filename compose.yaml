@@ -28,3 +28,13 @@ services:
       MINIO_ROOT_PASSWORD: password
     command: server /data --console-address ":9001"
     restart: unless-stopped
+
+  database:
+    image: bitnami/postgresql:17
+    container_name: database
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
