@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Prepare clone dir
 REPO_DIR="/srv/gitops/repo"
+COMPOSE_FILE="$REPO_DIR/${compose_path}"
 
 if [ ! -d "$REPO_DIR/.git" ]; then
     echo "[INFO] Initial clone of repo..."
@@ -12,14 +12,5 @@ else
     git -C "$REPO_DIR" pull
 fi
 
-# Compare tracked file
-REMOTE_FILE="$REPO_DIR/${compose_path}"
-
-if ! diff -q "$REMOTE_FILE" "${compose_path}" >/dev/null; then
-    echo "[INFO] Changes detected. Updating docker compose..."
-    cp "$REMOTE_FILE" "${compose_path}"
-    docker compose --file "${compose_path}" pull
-    docker compose --file "${compose_path}" up --detach
-else
-    echo "[INFO] No changes detected."
-fi
+docker compose --file "$COMPOSE_FILE" pull
+docker compose --file "$COMPOSE_FILE" up --detach
