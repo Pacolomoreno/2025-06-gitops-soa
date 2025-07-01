@@ -1,10 +1,18 @@
 name: continuous-delivery
 
-# Runs this job on all pushes to the main branch
+# Runs this workflow on
 on:
+  # Manual, or external, triggering of workflow
   workflow_dispatch:
+  # And pushes/commits to
   push:
-    branches: main
+    # These branches
+    branches:
+      - main
+    # And only if changes are in thes paths
+    paths:
+      - services/**
+      - compose.production.yaml
 
 # Grant permission for the worker to read the repository
 permissions:
