@@ -19,7 +19,7 @@ services:
   # Our own service
   example-service:
     build:
-      context: ./services/ExampleService
+      context: ./services/example-service
       dockerfile: Dockerfile
     environment:
       DATABASE_CONNECTIONSTRING: "postgresql://myuser:mypassword@localhost:5432/mydatabase"

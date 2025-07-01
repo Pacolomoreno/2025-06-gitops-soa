@@ -22,7 +22,7 @@ jobs:
       matrix:
         # The name of all the service containers we want to push
         service:
-          - ExampleService
+          - example-service
 
     steps:
       - uses: actions/checkout@v4
