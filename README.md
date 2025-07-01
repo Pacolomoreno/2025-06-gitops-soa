@@ -24,7 +24,7 @@
 
 ## Connecting to PostgreSQL instance from extension
 
-- Connection string `postgresql://myuser@localhost:5432/mydatabase``
+- Connection string `postgresql://myuser@localhost:5432/mydatabase`
 - Then add password to it's own field
 
 ## References
