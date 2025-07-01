@@ -27,6 +27,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.example-service.rule=PathPrefix(`/api/example`)"
       - "traefik.http.routers.example-service.entrypoints=web"
+      - "traefik.http.services.example-service.loadbalancer.server.port=8080"
 
   # External services we usually depends on
   object-storage:
