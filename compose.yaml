@@ -15,10 +15,16 @@ services:
       # - "/var/run/docker.sock:/var/run/docker.sock:ro" # Linux
       - "//var/run/docker.sock:/var/run/docker.sock:ro" # Windows
 
-  whoami:
-    image: "traefik/whoami"
-    container_name: "simple-service"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=PathPrefix('/whoami')"
-      - "traefik.http.routers.whoami.entrypoints=web"
+  object-storage:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000" # S3 API port
+      - "9001:9001" # MinIO Console port/Web UI
+    volumes:
+      - ~/minio/data:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
