@@ -30,6 +30,3 @@ module "gitops_lite" {
 output "compose_app" {
   value = module.gitops_lite.info
 }
-output "cloud-init" {
-  value = module.gitops_lite.cloud_init
-}
