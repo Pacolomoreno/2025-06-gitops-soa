@@ -28,7 +28,7 @@ write_files:
   - path: /usr/local/bin/reconcile.sh
     permissions: '0755'
     content: |
-${indented_reconciliation_script}
+      ${indented_reconciliation_script}
 
 runcmd:
   # Add Docker's official GPG key
