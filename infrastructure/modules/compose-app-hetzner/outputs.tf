@@ -1,7 +1,7 @@
-# output "compose_app" {
-#   description = "Compose application description"
-#   value       = hcloud_server.server
-# }
+output "info" {
+  description = "Compose application description"
+  value       = hcloud_server.server
+}
 
 output "cloud_init" {
   value = local.cloud_init

@@ -27,6 +27,9 @@ module "gitops_lite" {
   ssh_key = var.debug_key != null ? hcloud_ssh_key.debug_key[0] : null
 }
 
+output "compose_app" {
+  value = module.gitops_lite.info
+}
 output "cloud-init" {
   value = module.gitops_lite.cloud_init
 }
