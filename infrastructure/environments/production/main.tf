@@ -28,5 +28,8 @@ module "gitops_lite" {
 }
 
 output "compose_app" {
-  value = module.gitops_lite.info
+  value = {
+    ipv4_address = module.gitops_lite.info.ipv4_address
+    ipv6_address = module.gitops_lite.info.ipv6_address
+  }
 }
