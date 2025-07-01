@@ -1,3 +1,9 @@
+<h1 align="center">GitOps Lite</h1>
+
+<p align="center">
+  <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/larsgjobloop/2025-06-gitops-soa/continuous-delivery.yaml?style=for-the-badge&label=Build">
+<p>
+
 ## Sketches
 
 ![Lecture Sketches](/docs/soa-sketches-lecture.png)
