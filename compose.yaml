@@ -15,10 +15,10 @@ services:
       # - "/var/run/docker.sock:/var/run/docker.sock:ro" # Linux
       - "//var/run/docker.sock:/var/run/docker.sock:ro" # Windows
 
-    whoami:
-      image: "traefik/whoami"
-      container_name: "simple-service"
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-        - "traefik.http.routers.whoami.entrypoints=web"
+  whoami:
+    image: "traefik/whoami"
+    container_name: "simple-service"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
