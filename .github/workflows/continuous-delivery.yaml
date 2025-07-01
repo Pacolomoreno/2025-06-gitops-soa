@@ -12,7 +12,7 @@ permissions:
 
 # Variables available to the builder
 env:
-  IMAGE_NAME_PREFIX: ${{ github.repository }}
+  IMAGE_NAME_PREFIX: larsgjobloop/gitops-lite
 
 jobs:
   release:
