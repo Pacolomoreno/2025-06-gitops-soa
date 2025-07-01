@@ -22,6 +22,11 @@
   docker compose down
   ````
 
+## Connecting to PostgreSQL instance from extension
+
+- Connection string `postgresql://myuser@localhost:5432/mydatabase``
+- Then add password to it's own field
+
 ## References
 
 - [Traefik Proxy](https://doc.traefik.io/)
