@@ -7,7 +7,7 @@ variable "debug_key" {
 resource "hcloud_ssh_key" "debug_key" {
   count      = var.debug_key != null ? 1 : 0 # HCL Conditional syntax. Hacky, but works
   name       = "compose-app-ssh-key"
-  public_key = var.debug_key
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAaB/mzskgoQF0xcRY79l9FbIzVwK7Vqgowaxk5klJf8" # Id stored in /secrets/debug_key
 }
 
 module "gitops_lite" {

@@ -11,3 +11,9 @@ creation_rules:
       - age:
           - *admin
           - *larsgunnar
+  # Development SSH Key
+  - path_regex: secrets/debug_key
+    key_groups:
+      - age:
+          - *admin
+          - *larsgunnar
