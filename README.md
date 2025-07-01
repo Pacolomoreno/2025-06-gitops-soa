@@ -27,6 +27,10 @@
 - Connection string `postgresql://myuser@localhost:5432/mydatabase`
 - Then add password to it's own field
 
+## PostgreSQL Connector for C# .NET
+
+- [NpgSQL](https://www.npgsql.org/ef6/index.html)
+
 ## References
 
 - [Traefik Proxy](https://doc.traefik.io/)
