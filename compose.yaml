@@ -9,8 +9,8 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entryPoints.web.address=:80"
     ports:
-      - "80:80"
-      - "8080:8080" # Admin UI
+      - "80:80" # Available at http://localhost
+      - "8080:8080" # Admin UI. Available at http://localhost:8080
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
   # database:
