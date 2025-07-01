@@ -1,0 +1,59 @@
+services:
+  # Entrypoint for external users
+  ingress:
+    container_name: "traefik"
+    image: "traefik:v3.4"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+    ports:
+      - "80:80" # Available at http://localhost
+      - "8080:8080" # Admin UI. Available at http://localhost:8080
+    volumes:
+      # - "/var/run/docker.sock:/var/run/docker.sock:ro" # Linux
+      - "//var/run/docker.sock:/var/run/docker.sock:ro" # Windows
+
+  # Our own service
+  example-service:
+    image: ghcr.io/larsgjobloop/gitops-lite/example-service:2825eef49dac29fd80f103fe398896d67d6fb55a
+    environment:
+      DATABASE_CONNECTIONSTRING: "postgresql://myuser:mypassword@localhost:5432/mydatabase"
+    # Traefik supports dynamic configuration through labeling containers (you can do static and embed the same in a config file)
+    # Reference the Traefik docs for options: https://doc.traefik.io/traefik/
+    labels:
+      - "traefik.enable=true" # Enable Traefik for this service
+      - "traefik.http.routers.example-service.entrypoints=web" # For the entrypoint web
+      - "traefik.http.routers.example-service.rule=PathPrefix(`/api/example`)" # Forward /api/example
+      # Strip the prefix, so the service is unaware
+      - "traefik.http.middlewares.example-service.stripprefix.prefixes=/api/example"
+      - "traefik.http.routers.example-service.middlewares=example-service"
+      # Forward to port 8080 on the service container
+      - "traefik.http.services.example-service.loadbalancer.server.port=8080"
+
+  # External services we usually depends on
+  object-storage:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000" # S3 API port
+      - "9001:9001" # MinIO Console port/Web UI
+    volumes:
+      - ~/minio/data:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
+  database:
+    image: bitnami/postgresql:17
+    container_name: database
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
