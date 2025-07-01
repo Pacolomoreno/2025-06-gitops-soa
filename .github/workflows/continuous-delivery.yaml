@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+# Variables available to the builder
+env:
+  IMAGE_NAME_PREFIX: ${{ github.repository }}
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -44,5 +48,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/${{ matrix.service }}:latest
-            ghcr.io/${{ matrix.service }}:${{ github.sha }}
+            ghcr.io/${{ env.IMAGE_NAME_PREFIX }}/${{ matrix.service }}:latest
+            ghcr.io/${{ env.IMAGE_NAME_PREFIX }}/${{ matrix.service }}:${{ github.sha }}
