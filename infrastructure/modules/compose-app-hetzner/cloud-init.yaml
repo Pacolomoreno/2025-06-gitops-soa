@@ -1,10 +1,5 @@
 #cloud-config
 write_files:
-  - path: /usr/local/bin/reconcile.sh
-    permissions: '0755'
-    content: |
-${indented_reconciliation_script}
-
   # Setup the reconciliation data (systemd)
   - path: /etc/systemd/system/reconcile.service
     permissions: '0644'
@@ -29,6 +24,11 @@ ${indented_reconciliation_script}
 
       [Install]
       WantedBy=timers.target
+
+  - path: /usr/local/bin/reconcile.sh
+    permissions: '0755'
+    content: |
+${indented_reconciliation_script}
 
 runcmd:
   # Add Docker's official GPG key
