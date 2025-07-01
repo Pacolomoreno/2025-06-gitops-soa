@@ -6,6 +6,10 @@
   docker compose up
   ````
 
+- Stop docker compose when it's running (actully most programs)
+
+  `Ctrl + C` (Sends a Termination signal SIGINT)
+
 - If we have made changes to containers we **build**
   
   ```sh
