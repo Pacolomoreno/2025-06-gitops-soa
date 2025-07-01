@@ -1,3 +1,7 @@
+## Sketches
+
+![Lecture Sketches](/docs/soa-sketches-lecture.png)
+
 ## Commands
 
 - Start the compose stack
