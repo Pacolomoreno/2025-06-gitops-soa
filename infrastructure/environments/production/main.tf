@@ -33,6 +33,3 @@ output "compose_app" {
 output "cloud-init" {
   value = module.gitops_lite.cloud_init
 }
-output "reconciliation-script" {
-  value = module.gitops_lite.reconciliation_script
-}
