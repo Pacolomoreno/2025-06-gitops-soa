@@ -28,6 +28,8 @@ services:
       - "traefik.http.routers.example-service.rule=PathPrefix(`/api/example`)"
       - "traefik.http.routers.example-service.entrypoints=web"
       - "traefik.http.services.example-service.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.example-service.stripprefix.prefixes=/api/example"
+      - "traefik.http.routers.example-service.middlewares=example-service"
 
   # External services we usually depends on
   object-storage:
