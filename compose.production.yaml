@@ -18,7 +18,7 @@ services:
 
   # Our own service
   example-service:
-    image: ghcr.io/pacolomoreno/2025-06-gitops-soa/example-service:89cf97ba3562af7f66913c394b527d74ea74d2e5
+    image: ghcr.io/pacolomoreno/2025-06-gitops-soa/example-service:b07f603dae5407b9faf3a79a862458425fdcf101
     environment:
       DATABASE_CONNECTIONSTRING: "postgresql://myuser:mypassword@localhost:5432/mydatabase"
     # Traefik supports dynamic configuration through labeling containers (you can do static and embed the same in a config file)
