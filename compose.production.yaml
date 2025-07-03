@@ -34,9 +34,9 @@ services:
       - "traefik.http.services.example-service.loadbalancer.server.port=8080"
 
 
-podinfo:
+  podinfo:
     image: ghcr.io/stefanprodan/podinfo
-   
+    
     labels:
       - "traefik.enable=true" # Enable Traefik for this service
       - "traefik.http.routers.podinfo.entrypoints=web" # For the entrypoint web
@@ -44,5 +44,5 @@ podinfo:
       # Strip the prefix, so the service is unaware
       - "traefik.http.middlewares.podinfo.stripprefix.prefixes=/api/podinfo"
       - "traefik.http.routers.podinfo.middlewares=podinfo"
-      # Forward to port 80 on the service container
-      - "traefik.http.services.podinfo.loadbalancer.server.port=80"
+      # Forward to port 9898 on the service container
+      - "traefik.http.services.podinfo.loadbalancer.server.port=9898"
