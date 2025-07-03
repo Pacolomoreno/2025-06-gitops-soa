@@ -12,7 +12,6 @@ on:
     # And only if changes are in thes paths
     paths:
       - services/**
-      - compose.production.yaml
 
 # Grant permission for the worker to read the repository
 permissions:
