@@ -20,7 +20,7 @@ permissions:
 
 # Variables available to the builder
 env:
-  IMAGE_NAME_PREFIX: larsgjobloop/gitops-lite
+  IMAGE_NAME_PREFIX: pacolomoreno/2025-06-gitops-soa
 
 jobs:
   release:
