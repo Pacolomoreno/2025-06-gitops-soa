@@ -18,7 +18,7 @@ module "gitops_lite" {
   datacenter  = "hel1-dc2" # Helsinki
 
   # Application configuration
-  source_repository       = "https://github.com/LarsGJobloop/2025-06-gitops-soa.git"
+  source_repository       = "https://github.com/Pacolomoreno/2025-06-gitops-soa.git"
   branch                  = "main"
   compose_path            = "compose.production.yaml"
   reconciliation_interval = "1min"
